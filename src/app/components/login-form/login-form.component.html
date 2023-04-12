@@ -1,0 +1,17 @@
+<form class="container" id="login-form" (ngSubmit)="login()">
+    <h1>Authentification</h1>
+
+    <label for="email" [class.ng-invalid]="loginForm.dirty && loginForm.get('email')?.invalid">Email</label>
+    <input formControlName="email" type="text" placeholder="Enter your email" id="email" required />
+    <small *ngIf="loginForm.dirty && loginForm.get('email')?.hasError('required')">This field is required</small>
+
+    <label for="psw" [class.ng-invalid]="loginForm.dirty && loginForm.get('password')?.invalid">Password</label>
+    <input formControlName="password" type="password" placeholder="Enter your password" id="psw" required />
+    <small *ngIf="loginForm.dirty && loginForm.get('password')?.hasError('required')">This field is required</small>
+    <small *ngIf="loginForm.dirty && loginForm.get('password')?.hasError('password.pattern')">The password is not
+        compliant</small>
+
+    <p *ngIf="errorMessage" class="error">{{errorMessage}}</p>
+
+    <button type="submit">Login</button>
+</form>
